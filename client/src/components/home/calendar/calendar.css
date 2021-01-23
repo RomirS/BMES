@@ -1,0 +1,189 @@
+/*
+ |  tail.DateTime - A pure, vanilla JavaScript DateTime Picker
+ |  @author        SamBrishes <https://github.com/pytesNET/tail.DateTime/>
+ |                 MrGuiseppe <https://github.com/MrGuiseppe/pureJSCalendar/>
+ |  @version       0.3.4 - Alpha
+ |
+ |  @license       X11 / MIT License
+ |  @copyright     Copyright Â© 2018 - SamBrishes, pytesNET <pytes@gmx.net>
+ |                 Copyright Â© 2018 - MrGuiseppe <https://github.com/MrGuiseppe>
+ */
+
+/* @start tail.DateTime */
+.tail-datetime-calendar {
+    position: relative;
+    transform: translateY(-33px);
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    border-collapse: separate;
+}
+      
+
+.tail-datetime-calendar:after {
+    clear: both;
+    content: "";
+    display: block;
+    font-size: 0;
+    visibility: hidden;
+}
+
+.calendar-navi {
+    width: 100%;
+    padding: 10px 0;
+    display: table;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-bottom: 1px solid #e0e0e0;
+    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.0525); */
+    /* -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1125); */
+}
+
+.calendar-navi span {
+    vertical-align: top;
+    width: 40px;
+    padding: 0;
+    transform: translateX(40px);
+}
+
+.calendar-navi span i {
+    cursor: pointer;
+    padding: 4px;
+    transform: translateY(8%);
+    user-Select: none;
+}
+
+.calendar-navi span i:hover {
+    background: rgba(60, 60, 60, 0.05);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.calendar-navi a.calendar-label {
+    position: relative;
+    margin-left: 10px;
+    background: transparent;
+    padding-left: 12px;
+    padding-right: 4px;
+    color: black;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: unset;
+    -webkit-box-shadow: unset;
+    border: 1px solid #bdbdbd;
+}
+
+.calendar-navi a.calendar-label i {
+    vertical-align: middle;
+    transform: translateY(-2px);
+}
+
+.calendar-data {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.calendar-data table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.calendar-data table thead tr > *,
+.calendar-data table tbody tr > * {
+    padding: 0;
+    text-align: center;
+    font-weight: normal;
+}
+
+.calendar-data table thead tr > * {
+    height: 35px;
+    font-size: 14px;
+}
+
+.calendar-data table tbody tr > * {
+    position: relative;
+    height: 129px;
+    padding: 8px;
+    font-size: 14px;
+    vertical-align: text-top;
+}
+
+.calendar-data table tbody tr > * div {
+    margin: 0 auto;
+    width: 38px;
+    height: 38px;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+
+/* Select a Day */
+.calendar-data .calendar-day tbody tr .add_event {
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 30px;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.calendar-data table tbody tr .add_event:hover {
+    background: #fff9c4;
+}
+
+.calendar-data .calendar-day tbody tr .add_event i {
+    transform: translate(0.5px, 2.5px);
+    display: none;
+}
+
+.calendar-data table tbody tr .add_event:hover i {
+    display: block;
+}
+
+.calendar-data table tbody tr > *.today div {
+    color: #fff;
+    background: #2196f3;
+}
+
+.calendar-data table tbody tr > *:hover div {
+    color: #fff;
+    background: #90caf9;
+}
+
+.calendar-data table tbody tr > *.empty,
+.calendar-data table tbody tr > *.disable {
+    color: #8899aa;
+    cursor: default;
+    background-color: transparent;
+}
+
+.calendar-data table tbody tr > *.empty:hover:after,
+.calendar-data table tbody tr > *.disable:hover:after {
+    content: "";
+    display: none;
+}
+
+
+/* Dropdown */
+.dropdown-content {
+    width: 120px !important;
+    transform: translateY(-38px);
+}
+
+.dropdown-content li a {
+    font-size: 14px !important;
+}
+
+/* @end tail.DateTime */
+  

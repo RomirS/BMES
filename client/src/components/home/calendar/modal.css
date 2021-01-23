@@ -1,0 +1,55 @@
+.event-form .input-field input[type=text]:focus, .event-form textarea.materialize-textarea:focus {
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.event-form .input-field input[type=text]:focus + label, .event-form textarea.materialize-textarea:focus + label {
+    color: #2196f3;
+}
+
+.event-form .dropdown-content li>a, .dropdown-content li>span {
+    color: #616161 !important;
+}
+
+.event-form .autocomplete-content li .highlight {
+    color: #000 !important;
+}
+
+.dropdown-content{
+    width: max-content !important;
+    height:auto !important;
+ }
+
+/* Timepicker */
+.timepicker-modal {
+    width: 80%;
+}
+
+.timepicker-container {
+    width: 500px;
+}
+
+.event-form .timepicker-digital-display {
+    background: #2196f3;
+}
+
+.timepicker-plate {
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+.event-form .timepicker-canvas-bg, .timepicker-canvas-bearing {
+    fill: #2196f3;
+}
+
+.event-form .timepicker-canvas line {
+    stroke: #2196f3;
+}
+
+.timepicker-tick.active, .timepicker-tick:hover {
+    background-color: #90caf9;
+}
+
+.timepicker-close {
+    color: #000;
+}
