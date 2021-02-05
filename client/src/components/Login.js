@@ -125,14 +125,14 @@ class Login extends Component {
             </>
           ) : null}
           <div className="row">
-            <form onSubmit={this.handleSubmit} className="col s12 login-form">
-              <div className="row">
-                <div className="input-field col s12">
-                  <i className="material-icons prefix">picture_in_picture</i>
-                  <input onChange={this.handleChange} id="netid" name="netid" type="text" className="validate" autoComplete="off"></input>
-                  <label htmlFor="netid">Net ID</label>
+            <form onSubmit={this.handleSubmit} className="col s12 login-form" >
+                <div className="row">
+                    <div className="input-field col s12">
+                    <i className="material-icons prefix">picture_in_picture</i>
+                    <input onChange={this.handleChange} id="netid" name="netid" type="text" className="validate" autoComplete="off"></input>
+                    <label htmlFor="netid">Net ID</label>
+                    </div>
                 </div>
-              </div>
               <div className="row">
                 <div className="input-field col s12">
                   <i className="material-icons prefix">lock</i>

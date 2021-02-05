@@ -1,3 +1,11 @@
+.event-form .row {
+    margin-bottom: 0;
+}
+
+.event-form .input-field {
+    margin-bottom: 0.5rem;
+}
+
 .event-form .input-field input[type=text]:focus, .event-form textarea.materialize-textarea:focus {
     border-bottom: 1px solid #2196f3;
     box-shadow: 0 1px 0 0 #2196f3;
@@ -5,6 +13,10 @@
 
 .event-form .input-field input[type=text]:focus + label, .event-form textarea.materialize-textarea:focus + label {
     color: #2196f3;
+}
+
+.event-form .input-field .time {
+    border-bottom: 0px;
 }
 
 .event-form .dropdown-content li>a, .dropdown-content li>span {
@@ -15,10 +27,22 @@
     color: #000 !important;
 }
 
+.event-form .input-field span.text {
+    position: relative;
+    top: 28px;
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
 .dropdown-content{
     width: max-content !important;
     height:auto !important;
  }
+
+.MuiInputAdornment-positionEnd {
+    display: none!important;
+}
 
 /* Timepicker */
 .timepicker-modal {

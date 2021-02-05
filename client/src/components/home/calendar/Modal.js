@@ -1,6 +1,7 @@
 import React from 'react';
 import M from 'materialize-css';
 
+import TimePicker from './TimePicker';
 import months from 'data/months.json';
 import './modal.css';
 
@@ -75,13 +76,18 @@ class Modal extends React.Component {
                             </div>
                         </div>
                         <div className="row">
+                            <div className="input-field col s5">
+                                <TimePicker />
+                            </div>
+                            <div className="input-field col s5">
+                                <TimePicker />
+                            </div>
+                        </div>
+                        <div className="row">
                             <div className="input-field col s12">
                                 <textarea id="description" className="materialize-textarea"></textarea>
                                 <label htmlFor="description">Description</label>
                             </div>
-                        </div>
-                        <div className="row">
-                            
                         </div>
                     </form>
                 </div>
