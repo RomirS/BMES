@@ -6,6 +6,7 @@ import './index.css';
 
 import Login from './components/Login';
 import Home from './components/home';
+import Stats from './components/stats'
 
 import { loadUser } from './actions/authActions';
 
@@ -23,6 +24,7 @@ class App extends React.Component {
               <Route exact path='/' component={Login} />
               <Route exact path='/login' component={Login} />
               <Route path='/home' component={Home} />
+              <Route path='/stats' component={Stats} />
             </Switch>
           </div>
         </BrowserRouter>

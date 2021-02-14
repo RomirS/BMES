@@ -49,6 +49,13 @@ class Modal extends React.Component {
         };
     }
 
+    handleChange = (e) => {
+        this.setState({
+            ...this.state,
+            [e.target.id]: e.target.value
+        });
+    };
+
     render() {
         return (
             <div className="modal" ref={ (e) => {this.modal = e} }>
@@ -56,7 +63,7 @@ class Modal extends React.Component {
                     <form action="" className="col s12 event-form" autoComplete="off">
                         <div className="row">
                             <div className="input-field col s12">
-                                <input type="text" className="blue-text" placeholder="New Event" style={{fontSize: '40px', paddingBottom: '10px'}} />
+                                <input id="eventName" type="text" className="blue-text" placeholder="New Event" style={{fontSize: '40px', paddingBottom: '10px'}} />
                             </div>
                         </div>
                         <div className="row">
