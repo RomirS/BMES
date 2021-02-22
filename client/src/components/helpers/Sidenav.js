@@ -2,7 +2,7 @@ import React from 'react';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 
-import { logout } from '../../actions/authActions';
+import { logout } from 'redux/actions/authActions';
 
 class Sidenav extends React.Component {
   state = {

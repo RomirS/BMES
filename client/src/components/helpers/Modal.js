@@ -12,7 +12,10 @@ class Modal extends React.Component {
         instance: null,
         monthInput: null,
         yearInput: null,
-        timePicker: null
+        timePicker: {
+            1: null,
+            2: null
+        }
     }
 
     componentDidMount(){
@@ -30,7 +33,10 @@ class Modal extends React.Component {
                 instance: M.Modal.init(this.modal, { onCloseStart: this.props.closeModal }),
                 month: M.Autocomplete.init(this.monthInput, { data: months }),
                 year: M.Autocomplete.init(this.yearInput, { data: years }),
-                timepicker: M.Timepicker.init(this.timepicker)
+                timepicker: {
+                    1: M.Timepicker.init(this.timepicker1),
+                    2: M.Timepicker.init(this.timepicker2)
+                }
             });
         });
     }
@@ -78,16 +84,15 @@ class Modal extends React.Component {
                             <div className="input-field col s3" key={this.state.year}>
                                 <input id="year" type="text" placeholder="Year" defaultValue={this.state.year} ref={(e) => this.yearInput = e} />
                             </div>
-                            <div className="input-field col s3">
-                                <input type="text" className="timepicker" placeholder="Time of event" ref={(e) => this.timepicker = e} />
-                            </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s5">
-                                <TimePicker />
+                            <div className="input-field col s6">
+                                <input id="start" name="start" type="text" className="timepicker" ref={(e) => this.timepicker1 = e} />
+                                <label htmlFor="start">From</label>
                             </div>
-                            <div className="input-field col s5">
-                                <TimePicker />
+                            <div className="input-field col s6">
+                                <input id="end" name="end" type="text" className="timepicker" ref={(e) => this.timepicker2 = e} />
+                                <label htmlFor="start">To</label>
                             </div>
                         </div>
                         <div className="row">

@@ -1,14 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
-import './index.css';
+import store from 'redux/store';
 
-import Login from './components/Login';
-import Home from './components/home';
-import Stats from './components/stats'
+import Login from './login';
+import Home from './home';
+import Stats from './stats'
 
-import { loadUser } from './actions/authActions';
+import { loadUser } from 'redux/actions/authActions';
 
 class App extends React.Component {
   componentDidMount() {

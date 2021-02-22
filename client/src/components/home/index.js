@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Loader from '../Loader';
-import Sidenav from './Sidenav';
+import Loader from '../helpers/Loader';
+import Sidenav from '../helpers/Sidenav';
 import Calendar from './calendar';
 
 class Home extends Component {

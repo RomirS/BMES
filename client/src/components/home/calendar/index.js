@@ -2,8 +2,8 @@ import React from "react";
 import moment from "moment";
 import M from 'materialize-css';
 
+import Modal from '../../helpers/Modal'
 import "./calendar.css";
-import Modal from './Modal'
 
 class Calendar extends React.Component {
   weekdayshort = moment.weekdaysShort();
@@ -179,7 +179,7 @@ class Calendar extends React.Component {
             key={d} 
             className={`calendar-day ${currentDay}`} 
         >
-          <div>{d}</div>
+          <div className="date-number" >{d}</div>
           {user.isAdmin && <div
             className="add_event"
             onClick={e => {
