@@ -5,7 +5,6 @@ import './stats.css'
 
 class Stats extends Component {
     render() {
-        const { user, auth, error } = this.props;
 
         return (
             <div className="stats container valign-wrapper">

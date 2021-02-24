@@ -1,21 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import M from 'materialize-css';
 
-import TimePicker from './TimePicker';
 import months from 'data/months.json';
+import { addEvent } from 'redux/actions/eventActions';
 import './modal.css';
 
 class Modal extends React.Component {
     state = {
-        month: this.props.month(),
-        year: this.props.year(),
         instance: null,
         monthInput: null,
         yearInput: null,
-        timePicker: {
-            1: null,
-            2: null
+        timePickers: {
+            start: null,
+            end: null
+        },
+        form: {
+            month: this.props.month(),
+            year: this.props.year(),
+            day: String(this.props.day)
         }
+    }
+    static propTypes = {
+        addEvent: PropTypes.func.isRequired
     }
 
     componentDidMount(){
@@ -33,9 +41,9 @@ class Modal extends React.Component {
                 instance: M.Modal.init(this.modal, { onCloseStart: this.props.closeModal }),
                 month: M.Autocomplete.init(this.monthInput, { data: months }),
                 year: M.Autocomplete.init(this.yearInput, { data: years }),
-                timepicker: {
-                    1: M.Timepicker.init(this.timepicker1),
-                    2: M.Timepicker.init(this.timepicker2)
+                timepickers: {
+                    start: M.Timepicker.init(this.timepicker1, { onCloseStart: (_) => this.setFormTime('start') }),
+                    end: M.Timepicker.init(this.timepicker2, { onCloseStart: (_) => this.setFormTime('end') })
                 }
             });
         });
@@ -58,57 +66,133 @@ class Modal extends React.Component {
     handleChange = (e) => {
         this.setState({
             ...this.state,
-            [e.target.id]: e.target.value
+            form: {
+                ...this.state.form,
+                [e.target.id]: e.target.value
+            }
         });
     };
+
+    setFormTime = (type) => {
+        const { timepickers } = this.state
+        this.setState({
+            ...this.state,
+            form: {
+                ...this.state.form,
+                [type]: timepickers[type].time
+            }
+        });
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        const { eventName, month, day, year, start, end, description } = this.state.form;
+
+        const startTime = new Date(`${day} ${month} ${year} ${start} CST`);
+        const endTime = new Date(`${day} ${month} ${year} ${end} CST`);
+
+        this.props.addEvent({ eventName, startTime, endTime, description });
+    }
 
     render() {
         return (
             <div className="modal" ref={ (e) => {this.modal = e} }>
-                <div className="modal-content">
-                    <form action="" className="col s12 event-form" autoComplete="off">
+                <form onSubmit={this.handleSubmit} className="col s12 event-form" autoComplete="off">
+                    <div className="modal-content">
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="eventName" type="text" className="blue-text" placeholder="New Event" style={{fontSize: '40px', paddingBottom: '10px'}} />
+                                <input 
+                                    id="eventName" 
+                                    type="text" 
+                                    className="blue-text" 
+                                    placeholder="New Event" 
+                                    onChange={this.handleChange}
+                                    style={{fontSize: '40px', paddingBottom: '10px'}} 
+                                />
                             </div>
                         </div>
                         <div className="row">
                             {typeof this.state.month == 'string' && (
                                 <div className="input-field col s3" key={this.state.month}>
-                                    <input id="month" className="autocomplete" type="text" placeholder="Month" defaultValue={this.state.month} ref={(e) => this.monthInput = e} />
+                                    <input
+                                        id="month"
+                                        className="autocomplete" 
+                                        type="text" 
+                                        placeholder="Month" 
+                                        onChange={this.handleChange}
+                                        defaultValue={this.state.form.month} 
+                                        ref={(e) => this.monthInput = e} 
+                                    />
                                 </div>
                             )}
                             <div className="input-field col s3">
-                                <input id="day" type="text" placeholder="Day" defaultValue={this.props.day} />
+                                <input 
+                                    id="day" 
+                                    type="text" 
+                                    placeholder="Day" 
+                                    onChange={this.handleChange}
+                                    defaultValue={this.state.form.day} 
+                                />
                             </div>
                             <div className="input-field col s3" key={this.state.year}>
-                                <input id="year" type="text" placeholder="Year" defaultValue={this.state.year} ref={(e) => this.yearInput = e} />
+                                <input 
+                                    id="year" 
+                                    type="text"
+                                    placeholder="Year" 
+                                    onChange={this.handleChange}
+                                    defaultValue={this.state.form.year} 
+                                    ref={(e) => this.yearInput = e} 
+                                />
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
-                                <input id="start" name="start" type="text" className="timepicker" ref={(e) => this.timepicker1 = e} />
+                                <input 
+                                    id="startTime" 
+                                    name="start" 
+                                    type="text" 
+                                    className="timepicker" 
+                                    onChange={this.handleTimeChange}
+                                    ref={(e) => this.timepicker1 = e} 
+                                />
                                 <label htmlFor="start">From</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="end" name="end" type="text" className="timepicker" ref={(e) => this.timepicker2 = e} />
+                                <input 
+                                    id="endTime" 
+                                    name="end" 
+                                    type="text" 
+                                    className="timepicker" 
+                                    onChange={this.handleChange}
+                                    ref={(e) => this.timepicker2 = e} 
+                                />
                                 <label htmlFor="start">To</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <textarea id="description" className="materialize-textarea"></textarea>
+                                <textarea 
+                                    id="description" 
+                                    className="materialize-textarea"
+                                    onChange={this.handleChange}
+                                />
                                 <label htmlFor="description">Description</label>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div className="modal-footer">
-                    <a href="#!" className="modal-close btn-flat waves-effect waves-yellow">Submit</a>
-                </div>
+                    </div>
+                    <div className="modal-footer">
+                        <button className="blue btn waves-effect waves-light" type="submit" name="action">
+                            Submit
+                        </button>
+                        {/* <a href="#!" className="modal-close btn-flat waves-effect waves-yellow">Submit</a> */}
+                    </div>
+                </form>
             </div>
         )
     }
 }
 
-export default Modal;
+
+
+export default connect(null, { addEvent })(Modal);

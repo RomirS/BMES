@@ -259,7 +259,7 @@ class Calendar extends React.Component {
           </div>
         )}
         
-        <Modal year={() => this.year()} month={() => this.month()} day={this.state.selectedDay} closeModal={this.closeModal} />
+        {this.state.selectedDay && <Modal year={() => this.year()} month={() => this.month()} day={this.state.selectedDay} closeModal={this.closeModal} />}
 
       </div>
     );

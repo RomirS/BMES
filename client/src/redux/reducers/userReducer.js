@@ -18,7 +18,7 @@ const initialState = {
     isAdmin: false
 };
 
-export default function(state=initialState, action) {
+export default function user(state=initialState, action) {
     switch(action.type) {
         case USER_LOADED:
             return {
