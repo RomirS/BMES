@@ -1,4 +1,5 @@
 import {
+    GET_EVENTS,
     EVENT_ADDED
 } from '../actions/types';
 
@@ -8,10 +9,14 @@ const initialState = {
 
 export default function user(state=initialState, action) {
     switch(action.type) {
+        case GET_EVENTS:
+            return {
+                ...state,
+                events: [...action.payload]
+            }
         case EVENT_ADDED:
             return {
                 ...state,
-                events: [...state.events, action.newEvent]
             };
         default:
             return state;

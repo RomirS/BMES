@@ -6,6 +6,8 @@ import Loader from '../helpers/Loader';
 import Sidenav from '../helpers/Sidenav';
 import Calendar from './calendar';
 
+import { getEvents } from 'redux/actions/eventActions';
+
 class Home extends Component {
   state = {
     loaded: false
@@ -14,7 +16,13 @@ class Home extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    error: PropTypes.object
+    error: PropTypes.object,
+    setEventIndices: PropTypes.func.isRequired,
+    getEvents: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    this.props.getEvents(true);
   }
 
   componentDidUpdate() {
@@ -41,10 +49,10 @@ class Home extends Component {
   };
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  user: state.user,
-  error: state.error
+const mapStateToProps = ({ auth, user, error }) => ({
+  auth,
+  user,
+  error
 });
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, { getEvents })(Home);

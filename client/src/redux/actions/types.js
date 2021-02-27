@@ -9,5 +9,7 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
+export const GET_EVENTS = 'GET_EVENTS';
+export const GETEVENTS_FAIL = 'GETEVENTS_FAIL';
 export const EVENT_ADDED = 'ADD_EVENT';
 export const ADDEVENT_FAIL = 'ADD_EVENT';

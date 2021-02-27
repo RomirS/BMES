@@ -58,7 +58,6 @@ class Calendar extends React.Component {
 
   setMonth = month => {
     let monthNo = this.state.allmonths.indexOf(month);
-    console.log(monthNo);
     let dateObject = Object.assign({}, this.state.dateObject);
     dateObject = moment(dateObject).set("month", monthNo);
     this.setState({
@@ -199,13 +198,13 @@ class Calendar extends React.Component {
     let rows = [];
     let cells = [];
 
-    daysInMonth.forEach((row, i) => {
+    daysInMonth.forEach((day, i) => {
       if (i % 7 !== 0) {
-        cells.push(row);
+        cells.push(day);
       } else {
         rows.push(cells);
         cells = [];
-        cells.push(row);
+        cells.push(day);
       }
       if (i === daysInMonth.length - 1) {
         rows.push(cells);

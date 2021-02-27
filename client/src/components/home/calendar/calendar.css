@@ -143,7 +143,7 @@
 }
 
 .calendar-data .calendar-day tbody tr .add_event i {
-    transform: translate(0.5px, 2.5px);
+    transform: translate(0.5px, 4.0px);
     display: none;
 }
 
@@ -176,14 +176,14 @@
 
 
 /* Dropdown */
-.dropdown-content {
+/* .dropdown-content {
     width: 120px !important;
     transform: translateY(-38px);
 }
 
 .dropdown-content li a {
     font-size: 14px !important;
-}
+} */
 
 /* @end tail.DateTime */
   

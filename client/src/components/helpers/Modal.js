@@ -116,7 +116,7 @@ class Modal extends React.Component {
                             {typeof this.state.month == 'string' && (
                                 <div className="input-field col s3" key={this.state.month}>
                                     <input
-                                        id="month"
+                                        id="autocomplete-input"
                                         className="autocomplete" 
                                         type="text" 
                                         placeholder="Month" 
@@ -137,7 +137,8 @@ class Modal extends React.Component {
                             </div>
                             <div className="input-field col s3" key={this.state.year}>
                                 <input 
-                                    id="year" 
+                                    id="autocomplete-input"
+                                    className="autocomplete" 
                                     type="text"
                                     placeholder="Year" 
                                     onChange={this.handleChange}
@@ -185,7 +186,6 @@ class Modal extends React.Component {
                         <button className="blue btn waves-effect waves-light" type="submit" name="action">
                             Submit
                         </button>
-                        {/* <a href="#!" className="modal-close btn-flat waves-effect waves-yellow">Submit</a> */}
                     </div>
                 </form>
             </div>
@@ -193,6 +193,8 @@ class Modal extends React.Component {
     }
 }
 
+const mapStateToProps = ({ event }) => ({
+    event
+});
 
-
-export default connect(null, { addEvent })(Modal);
+export default connect(mapStateToProps, { addEvent })(Modal);
