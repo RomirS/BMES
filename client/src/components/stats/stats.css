@@ -1,3 +1,21 @@
+.container {
+    width: 95%;
+}
+.event-card {
+    margin: 20px !important;
+}
+.event-header {
+    background-color: #2196f3;
+}
+.event-title {
+    margin: 1rem 0 .912rem 1rem !important;
+}
+.posts {
+    padding: 0 0 5px 0!important;
+  }
 .stats {
     height: 100vh;
 }
+.row {
+    padding-top: 30px
+  }
