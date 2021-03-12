@@ -9,7 +9,7 @@ import Home from './components/home';
 
 import { loadUser } from './actions/authActions';
 
-import Stats from './components/stats';
+import StatsPage from './components/stats';
 
 class App extends React.Component {
   componentDidMount() {
@@ -25,7 +25,7 @@ class App extends React.Component {
               <Route exact path='/' component={Login} />
               <Route exact path='/login' component={Login} />
               <Route path='/home' component={Home} />
-              <Route path='/stats' component={Stats} />
+              <Route path='/stats' component={StatsPage} />
             </Switch>
           </div>
         </BrowserRouter>
