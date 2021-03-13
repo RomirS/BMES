@@ -1,29 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Sidenav from 'components/helpers/Sidenav';
+import Loader from 'components/helpers/Loader';
+import PropTypes from 'prop-types';
 
-import './stats.css'
+import './stats.css';
+import Stats from './Stats'
 
-class Stats extends Component {
-    render() {
 
-        return (
-            <div className="stats container valign-wrapper">
-                <ul>
-                    <li>Output user data into table</li>
-                    <li>Show upcoming events</li>
-                    <li>Show past events attended</li>
-                    <li>Progress bar</li>
-                    <li>Visualization for hours attended</li>
-                </ul>
-            </div>
-        )
+class StatsPage extends Component {
+    state = {
+        loaded: false
     }
-}
 
+    static propTypes = {
+        auth: PropTypes.object.isRequired,
+        user: PropTypes.object.isRequired,
+        error: PropTypes.object
+      }
+    
+    componentDidUpdate() {
+        if (!this.props.auth.isAuthenticated && !this.props.auth.isLoading) {
+            this.props.history.push('/login');
+        }
+    }
+    
+    render() {
+        const user = this.props.user;
+            return (
+                <>
+                    {user ? (
+                    <div className="block">
+                        <Sidenav user={user}/>
+                        <div>
+                        <Stats user={user}/> 
+                        </div>
+                    </div>
+                    ) : <Loader/> }
+                </>
+            );
+        };
+    };
+
+ 
 const mapStateToProps = (state) => ({
     auth: state.auth,
     user: state.user,
     error: state.error
-});
+  });
+  
+export default connect(mapStateToProps, null)(StatsPage);
 
-export default connect(mapStateToProps)(Stats);

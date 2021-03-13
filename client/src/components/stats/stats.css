@@ -1,3 +1,42 @@
-.stats {
-    height: 100vh;
+.blue-text {  
+      transform: translateX(+120px);
+}
+.centered{
+    transform: translateY(-33px);
+    transform: translateX(+320px);
+}
+
+.r1{
+    color: rgb(247, 105, 39);
+    font-size: 22px;
+}
+.r2{
+    color: rgb(0, 153, 255);
+    font-size: 22px;
+}
+.r3{
+    color: rgb(247, 105, 39);
+    font-size: 22px;
+}
+.r4{
+    color: rgb(0, 153, 255);
+    font-size: 22px;
+}
+.openButton{
+    transform: translateY(-33px);
+    transform: translateX(+124px);
+}
+.allData{
+    text-align: center;
+}
+.eventList{
+    color: rgb(247, 105, 39);
+}
+.fevents{
+    color: rgb(0, 153, 255);
+    transform: translateX(+120px);
+}
+.pevents{
+    color: rgb(0, 153, 255);
+    transform: translateX(+120px);
 }
