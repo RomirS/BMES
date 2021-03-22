@@ -8,5 +8,5 @@ export default combineReducers({
     user: userReducer,
     error: errorReducer,
     auth: authReducer,
-    event: eventReducer
+    events: eventReducer
 });

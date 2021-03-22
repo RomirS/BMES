@@ -5,24 +5,17 @@ import {
     EVENT_ADDED,
     ADDEVENT_FAIL
 } from './types';
+import { returnErrors } from './errorActions';
 
-export const getEvents = () => (dispatch, getState) => {
+export const getEvents = () => (dispatch) => {
     axios.get('/api/events').then(res => {
         dispatch({
             type: GET_EVENTS,
             payload: res.data
         });
-        if (getState) {
-            const d = new Date();
-            setEventIndices(d.getMonth(), d.getFullYear())(dispatch, getState);
-        }
     }).catch(_ => {
         dispatch({ type: GETEVENTS_FAIL });
     });
-}
-
-export const setEventIndices = (monthNo, year) => (dispatch, getState) => {
-    console.log(getState().event.events);
 }
 
 export const addEvent = ({ eventName, description, startTime, endTime }) => dispatch => {
@@ -39,7 +32,8 @@ export const addEvent = ({ eventName, description, startTime, endTime }) => disp
             type: EVENT_ADDED
         });
         getEvents()(dispatch);
-    }).catch((_) => {
+    }).catch((err) => {
+        dispatch(returnErrors(err.response.data, err.response.status, 'ADDEVENT_FAIL'));
         dispatch({ type: ADDEVENT_FAIL });
     });
 };

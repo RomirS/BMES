@@ -17,12 +17,11 @@ class Home extends Component {
     auth: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     error: PropTypes.object,
-    setEventIndices: PropTypes.func.isRequired,
     getEvents: PropTypes.func.isRequired
   }
 
   componentDidMount() {
-    this.props.getEvents(true);
+    this.props.getEvents();
   }
 
   componentDidUpdate() {
@@ -32,15 +31,15 @@ class Home extends Component {
   };
 
   render() {
-    const user = this.props.user;
+    const { user, events } = this.props;
 
     return (
       <>
-        {user ? (
+        {user && events ? (
           <div className="block">
             <Sidenav user={user}/>
             <div className="profile_interface">
-                <Calendar user={user}/>
+                <Calendar user={user} events={events}/>
             </div>
           </div>
         ) : <Loader/> }
@@ -49,10 +48,11 @@ class Home extends Component {
   };
 };
 
-const mapStateToProps = ({ auth, user, error }) => ({
+const mapStateToProps = ({ auth, user, error, events }) => ({
   auth,
   user,
-  error
+  error,
+  events
 });
 
 export default connect(mapStateToProps, { getEvents })(Home);
