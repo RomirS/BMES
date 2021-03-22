@@ -51,9 +51,8 @@ class Sidenav extends React.Component {
                     </span>}
                   </div>
                 </li>
-                <li className="user_hours">
-                    <p className="hours_text">Total Service Hours&nbsp;</p>
-                    <p className="hours"> {user.hours} </p>
+                <li>
+                  <a href="/">Event Calendar</a>
                 </li>
                 <li className="route">
                     <a href="/stats">Stats</a>
