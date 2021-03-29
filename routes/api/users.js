@@ -16,12 +16,14 @@ router.get('/', auth, (req, res) => {
 router.get('/all', auth, (req, res) => {
     User.findById(req.user.id).select('isAdmin').then(user => {
         if (user.isAdmin) {
-            User.find().select('first last netid hours events').then(users => {
-                return res.json(users);
-            });
+            return User.find().select('first last netid hours events');
         }
-        return res.status(401).json('Unauthorized request');
-    });
+    }).then(users => {
+        return res.json(users);
+    }).catch(e => {
+        return res.status(500).json('Server error: ', e);
+    })
+    return res.status(401).json('Unauthorized request');
 });
 
 router.post('/', (req,res) => {
