@@ -99,9 +99,10 @@
     padding: 8px;
     font-size: 14px;
     vertical-align: text-top;
+    width: 10%;
 }
 
-.calendar-data table tbody tr > * div {
+.calendar-data table tbody tr > * .date-number {
     margin: 0 auto;
     width: 30px;
     height: 30px;
@@ -111,7 +112,6 @@
     margin-bottom: 5px;
     border-radius: 50%;
 }
-
 
 /* Select a Day */
 .calendar-data .calendar-day tbody tr .add_event {
@@ -165,4 +165,17 @@
     display: none;
 }
 
+
+/* Events */
+.calendar-day .event-wrapper {
+    font-size: 0.8em;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+.calendar-day .event-wrapper .time {
+    float: left;
+    margin-left: 5px;
+}
   

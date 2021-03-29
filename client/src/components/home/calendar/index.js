@@ -3,7 +3,7 @@ import moment from "moment";
 import M from 'materialize-css';
 
 import Days from './Days';
-import Modal from '../../helpers/Modal';
+import Modal from './modals/Modal';
 import "./calendar.css";
 
 class Calendar extends React.Component {

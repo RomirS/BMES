@@ -39,9 +39,16 @@ class Days extends React.Component {
             for (let d = 1; d <= this.numOfDays(); d++) {
                 const formatDate = d < 10 ? `${this.year()}-${formatCurrMonth}-0${d}` : `${this.year()}-${formatCurrMonth}-${d}`;
                 const currEvent = currEvents[trackIndex];
-                const showEvents = currEvent.startTime.includes(formatDate);
-                if (showEvents && trackIndex < currEvents.length - 1) trackIndex++;
+                let showEvents = currEvent.startTime.includes(formatDate);
+                let eventsInDay = [];
+                while (showEvents && trackIndex < currEvents.length - 1) {
+                    eventsInDay.push(currEvent)
+                    trackIndex++;
+                    
+                }
     
+                let formatTime = currEvent.startTime.match(/\d\d:\d\d/)[0];
+                if (formatTime.charAt(0) === '0') formatTime = formatTime.substring(1);
                 const currentDay = (d === parseInt(this.currentDay()) && this.compare()) ? "today" : "";
                 daysInMonth.push(
                     <td 
@@ -60,9 +67,12 @@ class Days extends React.Component {
                             </span>
                         )}
                         {showEvents && (
-                            <span>
-                                {currEvent.eventName}
-                            </span>
+                            <div className="event-wrapper blue-text text-lighten-4 blue">
+                                <span className="time">{formatTime}</span>
+                                <span className="event-name">
+                                    {currEvent.eventName}
+                                </span>
+                            </div>
                         )}
                     </td>
                 );
