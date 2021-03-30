@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 
 const auth = require('../../middleware/auth');
-let User = require('../../models/User');
+const User = require('../../models/User');
 
 router.get('/', auth, (req, res) => {
     User.findById(req.user.id).select('id first last netid hours events isAdmin').then(user => {
@@ -18,12 +18,12 @@ router.get('/all', auth, (req, res) => {
         if (user.isAdmin) {
             return User.find().select('first last netid hours events');
         }
+        return res.status(401).json('Unauthorized request');
     }).then(users => {
         return res.json(users);
     }).catch(e => {
         return res.status(500).json('Server error: ', e);
-    })
-    return res.status(401).json('Unauthorized request');
+    });
 });
 
 router.post('/', (req,res) => {

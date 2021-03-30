@@ -18,14 +18,14 @@
 }
 
 .calendar-navi {
+    box-sizing: border-box;
+    height: 60px;
     width: 100%;
     padding: 10px 0;
     display: table;
     border-spacing: 0;
     border-collapse: separate;
     border-bottom: 1px solid #e0e0e0;
-    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.0525); */
-    /* -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1125); */
 }
 
 .calendar-navi span {
@@ -95,11 +95,12 @@
 
 .calendar-data table tbody tr > * {
     position: relative;
-    height: 129px;
+    box-sizing: border-box;
+    width: 10%;
+    height: calc(calc(97vh - 100px) / 5);
     padding: 8px;
     font-size: 14px;
     vertical-align: text-top;
-    width: 10%;
 }
 
 .calendar-data table tbody tr > * .date-number {
@@ -168,14 +169,35 @@
 
 /* Events */
 .calendar-day .event-wrapper {
-    font-size: 0.8em;
-    font-weight: 500;
+    font-size: 0.95em;
+    font-weight: 400;
     border-radius: 5px;
     padding: 1px;
+    overflow-x: hidden;
+    margin-bottom: 1px;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.calendar-day .event-wrapper:hover {
+    background: rgba(211, 211, 211, 0.2);
+}
+
+.calendar-day .event-wrapper .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #2196f3;
 }
 
 .calendar-day .event-wrapper .time {
-    float: left;
-    margin-left: 5px;
+    margin: auto 5px;
+}
+
+.calendar-day .event-wrapper .event-name {
+    font-weight: 500;
+    display: inline-block;
 }
   

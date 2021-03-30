@@ -4,6 +4,7 @@ import M from 'materialize-css';
 
 import Days from './Days';
 import Modal from './modals/Modal';
+import RegisterModal from "./modals/RegisterModal";
 import "./calendar.css";
 
 class Calendar extends React.Component {
@@ -13,10 +14,11 @@ class Calendar extends React.Component {
     allmonths: moment.months(),
     selectedDay: null,
     monthInstance: null,
-    yearInstance: null
+    yearInstance: null,
+    selectedEvent: null
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.setState({
         monthInstance: M.Dropdown.init(this.monthDropdown),
         yearInstance: M.Dropdown.init(this.yearDropdown)
@@ -35,6 +37,13 @@ class Calendar extends React.Component {
 
   closeModal = () => {
       this.setState({ selectedDay: null });
+  }
+
+  setSelectedEvent = (event) => {
+    this.setState({
+      ...this.state,
+      selectedEvent: event
+    })
   }
 
   getMonthNo = (month) => this.state.allmonths.indexOf(month);
@@ -141,7 +150,7 @@ class Calendar extends React.Component {
   };
 
   onDayClick = (e, d) => {
-    this.setState({ selectedDay: d });
+    this.setState({ selectedDay: d, selectedEvent: null });
   };
 
   render() {
@@ -152,53 +161,62 @@ class Calendar extends React.Component {
     });
 
     return (
-      <div className="tail-datetime-calendar"> 
+      <>
+        <div className="tail-datetime-calendar"> 
 
-       <div className="calendar-navi">
-          <span className="button-prev">
-            <i 
-              className="material-icons grey-text text-darken-2"
-              onClick={e => {
-                this.onPrev();
-              }}
-            >navigate_before</i>
-          </span>
-          <span className="calendar-button button-next">
-            <i 
-              className="material-icons grey-text text-darken-2"
-              onClick={e => {
-                this.onNext();
-              }}
-            >navigate_next</i>
-          </span>
-          <a className='calendar-label dropdown-trigger btn' href='#!' data-target='monthDropdown' ref={ (e) => {this.monthDropdown = e} }>
-            {this.month()}
-            <i className="material-icons grey-text text-darken-2">keyboard_arrow_down</i>
-          </a>
-          <this.MonthList months={moment.months()} />
-          <a className='calendar-label dropdown-trigger btn' href='#!' data-target='yearDropdown' ref={ (e) => {this.yearDropdown = e} }>
-            {this.year()}
-            <i className="material-icons grey-text text-darken-2">keyboard_arrow_down</i>
-          </a>
-          <this.YearTable year={moment().format("Y")} />
-        </div>
-
-        {this.state.showDateTable && (
-          <div className="calendar-data">
-            <table className="calendar-day">
-              <thead>
-                <tr>{weekdayshortname}</tr>
-              </thead>
-              {user && events && (
-                  <Days dateObject={this.state.dateObject} onDayClick={this.onDayClick} events={events} user={user} />
-                )}
-            </table>
+        <div className="calendar-navi">
+            <span className="button-prev">
+              <i 
+                className="material-icons grey-text text-darken-2"
+                onClick={e => {
+                  this.onPrev();
+                }}
+              >navigate_before</i>
+            </span>
+            <span className="calendar-button button-next">
+              <i 
+                className="material-icons grey-text text-darken-2"
+                onClick={e => {
+                  this.onNext();
+                }}
+              >navigate_next</i>
+            </span>
+            <a className='calendar-label dropdown-trigger btn' href='#!' data-target='monthDropdown' ref={ (e) => {this.monthDropdown = e} }>
+              {this.month()}
+              <i className="material-icons grey-text text-darken-2">keyboard_arrow_down</i>
+            </a>
+            <this.MonthList months={moment.months()} />
+            <a className='calendar-label dropdown-trigger btn' href='#!' data-target='yearDropdown' ref={ (e) => {this.yearDropdown = e} }>
+              {this.year()}
+              <i className="material-icons grey-text text-darken-2">keyboard_arrow_down</i>
+            </a>
+            <this.YearTable year={moment().format("Y")} />
           </div>
-        )}
-        
-        {this.state.selectedDay && <Modal year={() => this.year()} month={() => this.month()} day={this.state.selectedDay} closeModal={this.closeModal} />}
 
-      </div>
+          {this.state.showDateTable && (
+            <div className="calendar-data">
+              <table className="calendar-day">
+                <thead>
+                  <tr>{weekdayshortname}</tr>
+                </thead>
+                {user && events && (
+                    <Days 
+                      dateObject={this.state.dateObject}
+                      onDayClick={this.onDayClick}
+                      events={events}
+                      user={user}
+                      setSelectedEvent={this.setSelectedEvent}
+                    />
+                  )}
+              </table>
+            </div>
+          )}
+          
+          {this.state.selectedDay && <Modal year={() => this.year()} month={() => this.month()} day={this.state.selectedDay} closeModal={this.closeModal} />}
+
+        </div>
+        {this.state.selectedEvent && <RegisterModal event={this.state.selectedEvent} user={user} setSelectedEvent={this.setSelectedEvent} />}
+      </>
     );
   }
 }
