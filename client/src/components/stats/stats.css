@@ -1,42 +1,61 @@
-.blue-text {  
-      transform: translateX(+120px);
+.titleblue1{
+    margin-left: 700px;
+    margin-top: -175px;
+    color: #214183 !important
 }
+.titleblue2{
+    margin-right: 200px;
+    margin-bottom: -225px;
+    color: #214183 !important
+}
+
 .centered{
     transform: translateY(-33px);
     transform: translateX(+320px);
 }
-
 .r1{
-    color: rgb(247, 105, 39);
+    color: #FFA200;;
     font-size: 22px;
 }
 .r2{
-    color: rgb(0, 153, 255);
+    color: #214183;;
     font-size: 22px;
 }
 .r3{
-    color: rgb(247, 105, 39);
+    color: #FFA200;
     font-size: 22px;
 }
 .r4{
-    color: rgb(0, 153, 255);
+    color: #214183;
     font-size: 22px;
 }
 .openButton{
+    background-color: #FFA200 !important;
     transform: translateY(-33px);
     transform: translateX(+124px);
+    margin-bottom: 40px;
+    margin-top: 100px;
+    
 }
 .allData{
     text-align: center;
+    margin-top: 100px;
 }
 .eventList{
-    color: rgb(247, 105, 39);
+    color:#FFA200;;
 }
 .fevents{
-    color: rgb(0, 153, 255);
+    color: #214183;
     transform: translateX(+120px);
+
 }
 .pevents{
-    color: rgb(0, 153, 255);
+    color: #214183;
     transform: translateX(+120px);
 }
+.logoimage{
+    transform: translateX(+124px);
+    margin-top: 50px;
+}
+
+

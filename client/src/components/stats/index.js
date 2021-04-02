@@ -5,10 +5,10 @@ import Loader from 'components/helpers/Loader';
 import PropTypes from 'prop-types';
 
 import './stats.css';
-import Stats from './Stats'
+import StatsTable from './StatsTable'
 
 
-class StatsPage extends Component {
+class Stats extends Component {
     state = {
         loaded: false
     }
@@ -33,7 +33,7 @@ class StatsPage extends Component {
                     <div className="block">
                         <Sidenav user={user}/>
                         <div>
-                        <Stats user={user}/> 
+                        <StatsTable user={user}/> 
                         </div>
                     </div>
                     ) : <Loader/> }
@@ -49,5 +49,5 @@ const mapStateToProps = (state) => ({
     error: state.error
   });
   
-export default connect(mapStateToProps, null)(StatsPage);
+export default connect(mapStateToProps, null)(Stats);
 
