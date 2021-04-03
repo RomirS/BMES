@@ -77,7 +77,7 @@ class Days extends React.Component {
                                     onDayClick(e, d);
                                 }}
                             >
-                                <i className="material-icons yellow-text text-darken-3" style={{fontSize: '16px'}}>add</i>
+                                <i className="material-icons" style={{fontSize: '16px'}}>add</i>
                             </span>
                         )}
                         {eventsInDay.map(event => {

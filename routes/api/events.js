@@ -40,7 +40,8 @@ router.get('/:year/:monthNo', (req, res) => {
 router.post('/', async (req, res) => {
     const { eventName, description, startTime, endTime } = req.body;
 
-    if(!eventName || !description || !startTime || !endTime) return res.status(400).json('Please enter all fields');
+    if (!eventName || !description || !startTime || !endTime) return res.status(400).json('Please enter all fields');
+    if (eventName.includes('@')) return res.status(400).json('Name cannot contain @ symbol');
 
     const split = startTime.split('-');
     const year = split[0];
