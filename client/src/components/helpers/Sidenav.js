@@ -59,7 +59,8 @@ class Sidenav extends React.Component {
                 </li>
                 <li className="logout_button" style={{borderTop: '2px solid #eeeeee'}}>
                     <a className="waves-effect" href="#!" onClick={this.doLogout}>
-                        <i className="material-icons tiny" style={{fontSize: '1.5rem', transform: 'translateY(2px)', userSelect: 'none'}}>keyboard_return</i>Logout
+                        <i className="material-icons tiny" style={{fontSize: '1.5rem', transform: 'translateY(2px)', userSelect: 'none'}}>keyboard_return</i>
+                        Logout
                     </a>
                 </li>
             </ul>

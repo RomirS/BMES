@@ -3,7 +3,9 @@ import {
     GET_EVENTS,
     GETEVENTS_FAIL,
     EVENT_ADDED,
-    ADDEVENT_FAIL
+    ADDEVENT_FAIL,
+    USER_REGISTERED,
+    USER_REGISTER_FAIL
 } from './types';
 import { returnErrors } from './errorActions';
 
@@ -37,3 +39,22 @@ export const addEvent = ({ eventName, description, startTime, endTime }) => disp
         dispatch({ type: ADDEVENT_FAIL });
     });
 };
+
+export const registerForEvent = (eventName, startTime, netid) => dispatch => {
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    };
+
+    const body = JSON.stringify({ eventName, startTime, netid });
+    axios.post('/api/events/register', body, config).then(res => {
+        dispatch({ 
+            type: USER_REGISTERED,
+            payload: res.data.events
+        });
+    }).catch((err) => {
+        dispatch(returnErrors(err.response.data, err.response.status, 'USER_REGISTER_FAIL'));
+        dispatch({ type: USER_REGISTER_FAIL });
+    });
+}

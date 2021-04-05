@@ -5,7 +5,10 @@ import Loader from '../helpers/Loader';
 import Sidenav from '../helpers/Sidenav';
 import EventCard from '../helpers/EventCard';
 
-import './stats.css'
+
+import './stats.css';
+import Stats from './Stats'
+
 
 class Stats extends Component {
     render() {
@@ -45,13 +48,32 @@ class Stats extends Component {
             ) : <Loader/> }
           </>
         )
-    }
-}
 
+    }
+    
+    render() {
+        const user = this.props.user;
+            return (
+                <>
+                    {user ? (
+                    <div className="block">
+                        <Sidenav user={user}/>
+                        <div>
+                        <Stats user={user}/> 
+                        </div>
+                    </div>
+                    ) : <Loader/> }
+                </>
+            );
+        };
+    };
+
+ 
 const mapStateToProps = (state) => ({
     auth: state.auth,
     user: state.user,
     error: state.error
-});
+  });
+  
+export default connect(mapStateToProps, null)(StatsPage);
 
-export default connect(mapStateToProps)(Stats);
