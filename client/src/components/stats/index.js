@@ -57,25 +57,8 @@ class Stats extends Component {
         )
 
     }
-    
-    render() {
-        const user = this.props.user;
-            return (
-                <>
-                    {user ? (
-                    <div className="block">
-                        <Sidenav user={user}/>
-                        <div>
-                        <Stats user={user}/> 
-                        </div>
-                    </div>
-                    ) : <Loader/> }
-                </>
-            );
-        };
-    };
 
- 
+} 
 const mapStateToProps = (state) => ({
     auth: state.auth,
     user: state.user,

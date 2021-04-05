@@ -5,7 +5,7 @@ import store from 'redux/store';
 
 import Login from './login';
 import Home from './home';
-import StatsPage from './stats'
+import Stats from './stats'
 
 import { loadUser } from 'redux/actions/authActions';
 
@@ -23,7 +23,7 @@ class App extends React.Component {
               <Route exact path='/' component={Login} />
               <Route exact path='/login' component={Login} />
               <Route path='/home' component={Home} />
-              <Route path='/stats' component={StatsPage} />
+              <Route path='/stats' component={Stats} />
             </Switch>
           </div>
         </BrowserRouter>
