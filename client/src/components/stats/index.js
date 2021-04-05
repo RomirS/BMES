@@ -32,7 +32,9 @@ class Stats extends Component {
                         </div>
                         <div class="col s6">
                             <div class="section">
-                                <p>Progress Bar Here</p>
+                                <div class="progress">
+      	                            <div class="determinate blue" style={{"width":"50%"}}></div>
+  		                        </div>
                             </div>
                             <div class="section">
                                 <div class="card grey lighten-3">

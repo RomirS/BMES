@@ -20,3 +20,30 @@
     padding-top: 30px
   }
 
+.progress {
+    min-height: 36px;
+    overflow: hidden;
+    position: relative;
+/*     span {
+        position: relative;
+        float:left;
+        color: #fff;
+        padding: 8px;
+        z-index: 99999;
+        i {
+            width: inherit;
+            font-size: inherit;
+            position: relative;
+            top: 2px;
+            margin-left: 8px;
+        } */
+}
+.determinate {
+    width: 0;
+    transition: width 1s ease-in-out;
+    padding: 8px;
+    position: relative;
+    color: #fff;
+    text-align: right;
+    white-space: nowrap;
+}
