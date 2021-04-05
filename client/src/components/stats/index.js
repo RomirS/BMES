@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Loader from '../helpers/Loader';
 import Sidenav from '../helpers/Sidenav';
 import EventCard from '../helpers/EventCard';
 
 
-import './stats.css';
-import Stats from './Stats'
-
+import './stats.css'
+import { getEvents } from 'redux/actions/eventActions';
 
 class Stats extends Component {
+    static propTypes = {
+        getEvents: PropTypes.func.isRequired
+    }
+
+    componentDidMount() {
+        this.props.getEvents();  
+    }
     render() {
         const user = this.props.user;
+        const events = this.props.events;
         return (
             <>
             {user ? (
@@ -35,7 +42,7 @@ class Stats extends Component {
                                         </nav>
                                     </div>
                                     <div class="section">
-                                        <EventCard EventTitle={user.events}/>
+                                        <EventCard user={user} events={events}/>
                                     </div>
                                 </div>
                             </div>
@@ -72,8 +79,8 @@ class Stats extends Component {
 const mapStateToProps = (state) => ({
     auth: state.auth,
     user: state.user,
-    error: state.error
-  });
-  
-export default connect(mapStateToProps, null)(StatsPage);
+    error: state.error,
+    events: state.events
+});
 
+export default connect(mapStateToProps, { getEvents })(Stats);
