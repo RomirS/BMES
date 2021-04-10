@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-let Event = require('../../models/Event');
+const Event = require('../../models/Event');
+const User = require('../../models/User');
 
 router.get('/', (_, res) => {
     Event.find().sort({ year: 1 }).select('year months')
@@ -51,9 +52,10 @@ router.post('/', async (req, res) => {
         endTime
     }
 
-    const findIndex = (eventList, start) => {
+    const findIndex = (eventList, event) => {
+        const { startTime, eventName } = event;
         for (let i = 0; i < eventList.length; i++) {
-            if (start === eventList[i].startTime) return -1;
+            if (startTime === eventList[i].startTime && eventName === eventList[i].eventName) return -1;
             if (start < eventList[i].startTime) return i;
         }
         return eventList.length;
@@ -72,8 +74,8 @@ router.post('/', async (req, res) => {
     } else {
         if (doc.months[month].length !== 0) {
             const eventList = doc.months[month];
-            const index = findIndex(eventList, eventObj.startTime);
-            if (index === -1) return res.status(400).json('Two events cannot have the same start time');
+            const index = findIndex(eventList, eventObj);
+            if (index === -1) return res.status(400).json('Two events cannot have the same name and start time');
             let eventsInMonth = [];
             for (let i = 0; i < index; i++) {
                 eventsInMonth.push(eventList[i]);
@@ -91,6 +93,36 @@ router.post('/', async (req, res) => {
             return res.json(eventObj);
         }
     }
+});
+
+router.post('/register', (req, res) => {
+    const { eventName, startTime, netid } = req.body;
+
+    const date = new Date(startTime);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    month = month < 10 ? `0${month}` : `${month}`;
+
+    Event.findOne({ year })
+    .then(doc => {
+        if (doc) {
+            const events = doc.months[month];
+            for (const event of events) {
+                if (event.eventName === eventName && event.startTime === startTime) return User.findOne({ netid });
+            }
+        }
+        return res.status(404).json('Could not find event to register user');
+    }).then(async user => {
+        if (user) {
+            const eventid = `${eventName}@${startTime}`;
+            user.events.push(eventid);
+            await user.save();
+            res.json({ events: user.events });
+        }
+        else return res.status(404).json('Could not find user');
+    }).catch(e => {
+        return res.status(500).json('Server error: ', e);
+    })
 });
 
 module.exports = router;

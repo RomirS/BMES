@@ -76,10 +76,11 @@ class StatsTable extends Component {
                 <div className="list2">
 
                     <h4 className="pevents">Past Events:</h4>
+                
                     
-                    {user.events && (
+                    {user.events[2021] && (
                         <ul className="eList">
-                            {user.events.map(event => (
+                            {user.events[2021].map(event => (
                                 //condition 1: if current month is after event date, (event month - current month should be negative)
                                 (event.startTime.toISOString().getMonth() -  isoDate.getMonth() < 0) 
                                 || //condition 2: if current month is the same month as event month and event day has already been passed, (event day - current day < 0)
