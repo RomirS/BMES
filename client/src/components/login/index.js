@@ -10,55 +10,28 @@ const initFormState = {
   password: '',
 }
 
-const initErrorState = {
-  confirm: {
-    msg: null,
-    show: false,
-  },
-  err: {
-    msg: null,
-    show: false,
-  },
-}
-
 const Login = ({ auth, error, register, login, history }) => {
   const [formState, setFormState] = useState(initFormState);
-  const [errorState, setErrorState] = useState(initErrorState);
+  const [errorState, setErrorState] = useState([]);
   const [mustRegister, setMustRegister] = useState(false);
 
   useEffect(() => {
+    const errors = errorState.filter(err => err.id !== error.id);
     if(error.id === 'CONFIRM_SIGNUP') {
-      setErrorState({
-        confirm: {
-          msg: error.msg,
-          show: true
-        },
-        err: errorState.err
-      });
+      setErrorState([...errors, error]);
       setMustRegister(true);
-  } else if(error.id === 'LOGIN_FAIL' || error.id === 'REGISTER_FAIL') {
-    setErrorState({
-      confirm: errorState.confirm,
-      err: {
-        msg: error.msg,
-        show: true
-      }
-    });
-  } else {
-    setErrorState(initErrorState);
-  }
+    } else if(error.id === 'LOGIN_FAIL' || error.id === 'REGISTER_FAIL') {
+      setErrorState([...errors, error]);
+    }
   }, [error]);
 
   useEffect(() => {
     if (auth.isAuthenticated) history.push('/home');
   }, [auth, history]);
 
-  const clear = (key) => {
-    if (key === 'confirm' || key === 'err') {
-      var clearError = errorState;
-      clearError[key] = initErrorState[key];
-      setErrorState(clearError);
-    }
+  const clear = (index) => {
+    const clearedError = errorState.filter((_, i) => i !== index);
+    setErrorState(clearedError);
   };
 
   const handleChange = (e) => {
@@ -82,30 +55,23 @@ const Login = ({ auth, error, register, login, history }) => {
       <div className="row">
         <h1>Sign in with Illinois</h1>
       </div>
-      {errorState.err.show && (
-        <div className="row valign-wrapper">
-          <div className="col s1">
-            <button className="btn-floating btn-medium waves-effect waves-light red lighten-3 z-depth-0" onClick={() => clear('err')}>
-              <i className="material-icons">clear</i>
-            </button>
-          </div>
-          <div className="col s11 red lighten-3 white-text" style={{borderRadius: '4px', padding: '1rem'}}>
-            {errorState.err.msg}
-          </div>
-        </div>
+      {errorState.length > 0 && (
+        errorState.map((error, i) => {
+          const color = error.id === 'CONFIRM_SIGNUP' ? 'teal' : 'red';
+          return (
+            <div className="row valign-wrapper" key={"error" + i} >
+              <button className={"btn-floating btn-medium waves-effect waves-light lighten-3 z-depth-0 " + color} onClick={() => clear(i)}>
+                <i className="material-icons">clear</i>
+              </button>
+              <div className={"col s11 lighten-3 white-text " + color} style={{borderRadius: '4px', padding: '1rem'}}>
+                {error.msg}
+              </div>
+            </div>
+          )
+        })
       )}
       {mustRegister && (
         <>
-          {errorState.confirm.show && (
-            <div className="row valign-wrapper">
-              <button className="btn-floating btn-medium waves-effect waves-light teal lighten-3 z-depth-0" onClick={() => clear('confirm')}>
-                <i className="material-icons">clear</i>
-              </button>
-              <div className="col s11 teal lighten-3 white-text" style={{borderRadius: '4px', padding: '1rem'}}>
-                {errorState.confirm.msg}
-              </div>
-            </div>
-          )}
           <div className="row">
             <div className="input-field col s6">
               <i className="material-icons prefix">account_circle</i>
