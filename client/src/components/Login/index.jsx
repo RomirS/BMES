@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { connect } from 'react-redux';
 
 import { register, login } from 'redux/actions/authActions';
+import './login.css';
 
 const initFormState = {
   first: '',
@@ -10,28 +11,33 @@ const initFormState = {
   password: '',
 }
 
-const Login = ({ auth, error, register, login, history }) => {
+const errorReducer = (errors, [errorId, payload]) => {
+  switch(errorId) {
+    case 'CONFIRM_SIGNUP':
+    case 'LOGIN_FAIL':
+    case 'REGISTER_FAIL':
+      const filteredErrors = errors.filter(err => err.id !== errorId);
+      return [...filteredErrors, payload.newError]
+    case 'REMOVE_ERROR':
+      const clearedError = errors.filter((_, i) => i !== payload.errorIndex);
+      return clearedError
+    default:
+      return errors;
+  }
+}
+
+const Login = ({ error, register, login }) => {
   const [formState, setFormState] = useState(initFormState);
-  const [errorState, setErrorState] = useState([]);
+  const [errorState, dispatchError] = useReducer(errorReducer, []);
   const [mustRegister, setMustRegister] = useState(false);
 
   useEffect(() => {
-    const errors = errorState.filter(err => err.id !== error.id);
-    if(error.id === 'CONFIRM_SIGNUP') {
-      setErrorState([...errors, error]);
-      setMustRegister(true);
-    } else if(error.id === 'LOGIN_FAIL' || error.id === 'REGISTER_FAIL') {
-      setErrorState([...errors, error]);
-    }
+    dispatchError([error.id, { newError: error }]);
+    if(error.id === 'CONFIRM_SIGNUP') setMustRegister(true);
   }, [error]);
 
-  useEffect(() => {
-    if (auth.isAuthenticated) history.push('/home');
-  }, [auth, history]);
-
   const clear = (index) => {
-    const clearedError = errorState.filter((_, i) => i !== index);
-    setErrorState(clearedError);
+    dispatchError(['REMOVE_ERROR', { errorIndex: index }]);
   };
 
   const handleChange = (e) => {
@@ -115,4 +121,4 @@ const Login = ({ auth, error, register, login, history }) => {
   )
 }
 
-export default connect(({ auth, error }) => ({ auth, error }), { register, login })(Login);
+export default connect(({ error }) => ({ error }), { register, login })(Login);

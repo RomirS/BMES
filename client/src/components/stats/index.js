@@ -1,53 +1,71 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Sidenav from 'components/helpers/Sidenav';
-import Loader from 'components/helpers/Loader';
 import PropTypes from 'prop-types';
+import Loader from '../helpers/Loader';
+import Sidenav from '../helpers/Sidenav';
+import EventCard from '../helpers/EventCard';
 
-import './stats.css';
-import Stats from './Stats'
 
+import './stats.css'
+import { getEvents } from 'redux/actions/eventActions';
 
-class StatsPage extends Component {
-    state = {
-        loaded: false
-    }
-
+class Stats extends Component {
     static propTypes = {
-        auth: PropTypes.object.isRequired,
-        user: PropTypes.object.isRequired,
-        error: PropTypes.object
-      }
-    
-    componentDidUpdate() {
-        if (!this.props.auth.isAuthenticated && !this.props.auth.isLoading) {
-            this.props.history.push('/login');
-        }
+        getEvents: PropTypes.func.isRequired
     }
-    
+
+    componentDidMount() {
+        this.props.getEvents();  
+    }
     render() {
         const user = this.props.user;
-            return (
-                <>
-                    {user ? (
-                    <div className="block">
-                        <Sidenav user={user}/>
-                        <div>
-                        <Stats user={user}/> 
+        const events = this.props.events;
+        return (
+            <>
+            {user ? (
+                <div className="container">
+                    <div className="row">
+                        <div className="col s3">
+                            <div>
+                                <Sidenav user={user}/>
+                            </div>
+                        </div>
+                        <div className="col s6">
+                            <div className="section">
+                                <div className="progress">
+      	                            <div className="determinate blue" style={{"width":"50%"}}></div>
+  		                        </div>
+                            </div>
+                            <div className="section">
+                                <div className="card grey lighten-3">
+                                    <div className="card-content posts">
+                                        <nav className="event-header">
+                                            <h4 className="left event-title">Upcoming Events</h4>
+                                        </nav>
+                                    </div>
+                                    <div className="section">
+                                        <EventCard user={user} events={events}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className= "col s3">
+                            <p>hours/week</p>
                         </div>
                     </div>
-                    ) : <Loader/> }
-                </>
-            );
-        };
-    };
+              </div>
+            ) : <Loader/> }
+          </>
+        )
 
- 
+    }
+
+} 
 const mapStateToProps = (state) => ({
     auth: state.auth,
     user: state.user,
-    error: state.error
-  });
-  
-export default connect(mapStateToProps, null)(StatsPage);
+    error: state.error,
+    events: state.events
+});
 
+export default connect(mapStateToProps, { getEvents })(Stats);

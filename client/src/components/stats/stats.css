@@ -1,42 +1,49 @@
-.stats .blue-text {  
-      transform: translateX(+120px);
+.container {
+    width: 95%;
 }
-.centered{
-    transform: translateY(-33px);
-    transform: translateX(+320px);
+.event-card {
+    margin: 20px !important;
 }
+.event-header {
+    background-color: #2196f3;
+}
+.event-title {
+    margin: 1rem 0 .912rem 1rem !important;
+}
+.posts {
+    padding: 0 0 5px 0!important;
+  }
+.stats {
+    height: 100vh;
+}
+.row {
+    padding-top: 30px
+  }
 
-.r1{
-    color: rgb(247, 105, 39);
-    font-size: 22px;
+.progress {
+    min-height: 36px;
+    overflow: hidden;
+    position: relative;
+/*     span {
+        position: relative;
+        float:left;
+        color: #fff;
+        padding: 8px;
+        z-index: 99999;
+        i {
+            width: inherit;
+            font-size: inherit;
+            position: relative;
+            top: 2px;
+            margin-left: 8px;
+        } */
 }
-.r2{
-    color: rgb(0, 153, 255);
-    font-size: 22px;
-}
-.r3{
-    color: rgb(247, 105, 39);
-    font-size: 22px;
-}
-.r4{
-    color: rgb(0, 153, 255);
-    font-size: 22px;
-}
-.openButton{
-    transform: translateY(-33px);
-    transform: translateX(+124px);
-}
-.allData{
-    text-align: center;
-}
-.eventList{
-    color: rgb(247, 105, 39);
-}
-.fevents{
-    color: rgb(0, 153, 255);
-    transform: translateX(+120px);
-}
-.pevents{
-    color: rgb(0, 153, 255);
-    transform: translateX(+120px);
+.determinate {
+    width: 0;
+    transition: width 1s ease-in-out;
+    padding: 8px;
+    position: relative;
+    color: #fff;
+    text-align: right;
+    white-space: nowrap;
 }

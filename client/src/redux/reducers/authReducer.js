@@ -11,43 +11,48 @@ import {
 
 const initialState = {
     token: localStorage.getItem('token'),
-    isAuthenticated: null,
-    isLoading: false
+    isAuthenticated: false,
+    isLoading: false,
+    hasLoaded: false
 };
 
 export default function auth(state=initialState, action) {
-    switch(action.type) {
-        case USER_LOADING:
-            return {
-                ...state,
-                isLoading: true
-            };
-        case USER_LOADED:
-            return {
-                ...state,
-                isAuthenticated: true,
-                isLoading: false
-            };
-        case LOGIN_SUCCESS:
-        case REGISTER_SUCCESS:
-            localStorage.setItem('token', action.payload.token);
-            return {
-                ...state,
-                isAuthenticated: true,
-                isLoading: false
-            };
-        case AUTH_ERROR:
-        case LOGIN_FAIL:
-        case REGISTER_FAIL:
-        case LOGOUT_SUCCESS:
-            localStorage.removeItem('token');
-            return {
-                ...state,
-                token: null,
-                isAuthenticated: false,
-                isLoading: false
-            }
-        default:
-            return state;
-    }
+  switch(action.type) {
+    case USER_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        hasLoaded: false
+      };
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        hasLoaded: true
+      };
+    case LOGIN_SUCCESS:
+    case REGISTER_SUCCESS:
+      localStorage.setItem('token', action.payload.token);
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        hasLoaded: true
+      };
+    case AUTH_ERROR:
+    case LOGIN_FAIL:
+    case REGISTER_FAIL:
+    case LOGOUT_SUCCESS:
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        isLoading: false,
+        hasLoaded: true
+      }
+    default:
+        return state;
+  }
 }

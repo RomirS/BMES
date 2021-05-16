@@ -1,0 +1,46 @@
+.pfpIcon {
+  float: left;
+}
+
+.username {
+  position: relative;
+  top: 5px;
+  margin: auto 10px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.verified_icon {
+  position: relative;
+  top: 6px;
+}
+
+.logout_button {
+position: absolute;
+bottom: 0;
+width: 100%;
+}
+
+.user_hours .hours_text {
+  color: #616161;
+  margin-left: 5%;
+  padding-left: 5%;
+  width: 60%;
+  float: left;
+  border-left: 2px solid #2196f3;
+  line-height: 20px;
+}
+
+.user_hours .hours {
+  width: 20%;
+  color: #9e9e9e;
+  margin-right: 10%;
+  float: right;
+  text-align: right;
+  line-height: 20px;
+  transform: translateY(-1px);
+}
+
+.user_hours .hours:after {
+  clear: all;
+}

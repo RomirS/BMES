@@ -3,6 +3,7 @@ import M from 'materialize-css';
 import { connect } from 'react-redux';
 
 import { logout } from 'redux/actions/authActions';
+import './sidenav.css';
 
 class Sidenav extends React.Component {
   state = {
@@ -51,9 +52,8 @@ class Sidenav extends React.Component {
                     </span>}
                   </div>
                 </li>
-                <li className="user_hours">
-                    <p className="hours_text">Total Service Hours&nbsp;</p>
-                    <p className="hours"> {user.hours} </p>
+                <li>
+                  <a href="/">Event Calendar</a>
                 </li>
                 <li className="route">
                     <a href="/stats">Stats</a>
