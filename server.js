@@ -24,11 +24,11 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
   app.get('*', (_,res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);
 });
 

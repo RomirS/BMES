@@ -5,8 +5,8 @@ import authReducer from './authReducer';
 import eventReducer from './eventReducer';
 
 export default combineReducers({
-    user: userReducer,
-    error: errorReducer,
-    auth: authReducer,
-    events: eventReducer
+  user: userReducer,
+  error: errorReducer,
+  auth: authReducer,
+  events: eventReducer
 });

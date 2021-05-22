@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Loader from '../helpers/Loader';
 import Sidenav from '../helpers/Sidenav';
-import EventCard from '../helpers/EventCard';
+import EventCard from './EventCard';
 
 
 import './stats.css'

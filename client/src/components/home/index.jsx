@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Loader from '../helpers/Loader';
 import Sidenav from '../helpers/Sidenav';
-import Calendar from './calendar';
+import Calendar from './Calendar/';
 import { getEvents } from 'redux/actions/eventActions';
 import './home.css';
 

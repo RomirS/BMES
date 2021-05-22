@@ -1,0 +1,190 @@
+.modal-wrapper {
+  float: right;
+  position: fixed;
+  top: 0px;
+  right: 0;
+  padding: 30px;
+  width: calc(calc(100vw - 300px) * 0.3);
+  height: 100vh;
+  background: #fff;
+  border-left: 2px solid #e0e0e0;
+
+  @media (max-width: 992px) {
+    width: 30%;
+  }
+}
+
+/* AddEventModal */
+.add-event-modal {
+  .clear {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .line {
+    padding-bottom: 10px;
+
+    .title {
+      margin-top: 20px;
+      width: 100%;
+      font-size: 40px;
+    }
+
+    .month, .year, .day {
+      width: 20%;
+      text-align: center;
+    }
+
+    .slash {
+      padding: 0 20px;
+    }
+
+    .time {
+      width: fit-content;
+    }
+
+    .to {
+      padding: 0 20px;
+    }
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
+    display: none;
+  }
+}
+
+/* Register Modal */
+.register-modal {
+  box-sizing: border-box;
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin: 20px 0;
+    font-size: 20px;
+  }
+
+  button {
+    float: right;
+  }
+
+  .clear {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .registered {
+    text-align: right;
+
+    i {
+      font-size: 20px;
+      margin-left: 10px;
+      transform: translateY(3px);
+    }
+
+    p {
+      display: inline-block;
+    }
+  }
+}
+
+.event-form .row {
+  margin-bottom: 0;
+}
+
+.event-form .input-field {
+  margin-bottom: 0.5rem;
+}
+
+.event-form .input-field input[type=text]:focus, .event-form textarea.materialize-textarea:focus {
+  border-bottom: 1px solid #2196f3;
+  box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.event-form .input-field input[type=text]:focus + label, .event-form textarea.materialize-textarea:focus + label {
+  color: #2196f3;
+}
+
+.event-form .input-field .time {
+  border-bottom: 0px;
+}
+
+.event-form .dropdown-content li>a, .dropdown-content li>span {
+  color: #616161 !important;
+}
+
+.event-form .autocomplete-content li .highlight {
+  color: #000 !important;
+}
+
+.event-form .input-field span.text {
+  position: relative;
+  top: 28px;
+  margin-right: 40px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.dropdown-content{
+  width: max-content !important;
+  height:auto !important;
+}
+
+.MuiInputAdornment-positionEnd {
+  display: none!important;
+}
+
+/* Timepicker */
+.timepicker-modal {
+  width: 80%;
+}
+
+.timepicker-container {
+  width: 500px;
+}
+
+.event-form .timepicker-digital-display {
+  background: #2196f3;
+}
+
+.timepicker-plate {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.event-form .timepicker-canvas-bg, .timepicker-canvas-bearing {
+  fill: #2196f3;
+}
+
+.event-form .timepicker-canvas line {
+  stroke: #2196f3;
+}
+
+.timepicker-tick.active, .timepicker-tick:hover {
+  background-color: #90caf9;
+}
+
+.timepicker-close {
+  color: #000;
+}

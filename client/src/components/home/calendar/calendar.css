@@ -1,203 +1,206 @@
-.tail-datetime-calendar {
-    position: relative;
-    transform: translateY(-33px);
-    width: 100%;
-    min-height: 100vh;
-    display: block;
-    overflow: hidden;
-    border-collapse: separate;
+.minimize-calendar {
+  width: 70%;
+  display: inline-block;
 }
-      
+
+.tail-datetime-calendar {
+  position: relative;
+  transform: translateY(-33px);
+  width: 100%;
+  min-height: 100vh;
+  display: block;
+  overflow: hidden;
+  border-collapse: separate;
+}
 
 .tail-datetime-calendar:after {
-    clear: both;
-    content: "";
-    display: block;
-    font-size: 0;
-    visibility: hidden;
+  clear: both;
+  content: "";
+  display: block;
+  font-size: 0;
+  visibility: hidden;
 }
 
 .calendar-navi {
-    box-sizing: border-box;
-    height: 60px;
-    width: 100%;
-    padding: 10px 0;
-    display: table;
-    border-spacing: 0;
-    border-collapse: separate;
-    border-bottom: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  height: 60px;
+  width: 100%;
+  padding: 10px 0;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .calendar-navi span {
-    vertical-align: top;
-    width: 40px;
-    padding: 0;
-    transform: translateX(40px);
+  vertical-align: top;
+  width: 40px;
+  padding: 0;
+  transform: translateX(40px);
 }
 
 .calendar-navi span i {
-    cursor: pointer;
-    padding: 4px;
-    transform: translateY(8%);
-    user-Select: none;
+  cursor: pointer;
+  padding: 4px;
+  transform: translateY(8%);
+  user-Select: none;
 }
 
 .calendar-navi span i:hover {
-    background: rgba(60, 60, 60, 0.05);
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
+  background: rgba(60, 60, 60, 0.05);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
 }
 
 .calendar-navi a.calendar-label {
-    position: relative;
-    margin-left: 10px;
-    background: transparent;
-    padding-left: 12px;
-    padding-right: 4px;
-    color: black;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    box-shadow: unset;
-    -webkit-box-shadow: unset;
-    border: 1px solid #bdbdbd;
+  position: relative;
+  margin-left: 10px;
+  background: transparent;
+  padding-left: 12px;
+  padding-right: 4px;
+  color: black;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: unset;
+  -webkit-box-shadow: unset;
+  border: 1px solid #bdbdbd;
 }
 
 .calendar-navi a.calendar-label i {
-    vertical-align: middle;
-    transform: translateY(-2px);
+  vertical-align: middle;
+  transform: translateY(-2px);
 }
 
 .calendar-data {
-    margin: 0;
-    padding: 0;
-    display: block;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 
 .calendar-data table {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border-spacing: 0;
-    border-collapse: collapse;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 .calendar-data table thead tr > *,
 .calendar-data table tbody tr > * {
-    padding: 0;
-    text-align: center;
-    font-weight: normal;
+  padding: 0;
+  text-align: center;
+  font-weight: normal;
 }
 
 .calendar-data table thead tr > * {
-    height: 35px;
-    font-size: 14px;
+  height: 35px;
+  font-size: 14px;
 }
 
 .calendar-data table tbody tr > * {
-    position: relative;
-    box-sizing: border-box;
-    width: 10%;
-    height: calc(calc(97vh - 100px) / 5);
-    padding: 8px;
-    font-size: 14px;
-    vertical-align: text-top;
+  position: relative;
+  box-sizing: border-box;
+  width: 10%;
+  height: calc(calc(97vh - 100px) / 5);
+  padding: 8px;
+  font-size: 14px;
+  vertical-align: text-top;
 }
 
 .calendar-data table tbody tr > * .date-number {
-    margin: 0 auto;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    padding: 2.5px;
-    padding-top: 5px;
-    margin-bottom: 5px;
-    border-radius: 50%;
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 2.5px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 50%;
 }
 
 /* Select a Day */
 .calendar-data .calendar-day tbody tr .add_event {
-    top: 7px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 32px;
-    height: 32px;
-    background: transparent;
-    cursor: pointer;
-    font-size: 30px;
-    display: block;
-    position: absolute;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 30px;
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
 }
 
 .calendar-data table tbody tr .add_event:hover {
-    background: #ffeb3b;
+  background: #ffeb3b;
 }
 
 .calendar-data .calendar-day tbody tr .add_event i {
-    transform: translate(0.5px, 8.0px);
-    display: none;
+  transform: translate(0.5px, 8.0px);
+  display: none;
 }
 
 .calendar-data table tbody tr .add_event:hover i {
-    display: block;
+  display: block;
 }
 
-.calendar-data table tbody tr > *.today div {
-    color: #fff;
-    background: #2196f3;
+.calendar-data table tbody tr > *.today div.date-number {
+  color: #fff;
+  background: #2196f3;
 }
 
 .calendar-data table tbody tr > *:hover div.date-number {
-    color: #fff;
-    background: #90caf9;
+  color: #fff;
+  background: #90caf9;
 }
 
 .calendar-data table tbody tr > *.empty,
 .calendar-data table tbody tr > *.disable {
-    color: #8899aa;
-    cursor: default;
-    background-color: transparent;
+  color: #8899aa;
+  cursor: default;
+  background-color: transparent;
 }
 
 .calendar-data table tbody tr > *.empty:hover:after,
 .calendar-data table tbody tr > *.disable:hover:after {
-    content: "";
-    display: none;
+  content: "";
+  display: none;
 }
 
 
 /* Events */
 .calendar-day .event-wrapper {
-    font-size: 0.95em;
-    font-weight: 400;
-    border-radius: 5px;
-    padding: 1px;
-    overflow-x: hidden;
-    margin-bottom: 1px;
-    text-align: left;
-    cursor: pointer;
-    white-space: nowrap;
+  font-size: 0.95em;
+  font-weight: 400;
+  border-radius: 5px;
+  padding: 1px;
+  overflow-x: hidden;
+  margin-bottom: 1px;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .calendar-day .event-wrapper:hover {
-    background: rgba(211, 211, 211, 0.2);
+  background: rgba(211, 211, 211, 0.2);
 }
 
 .calendar-day .event-wrapper .dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #2196f3;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2196f3;
 }
 
 .calendar-day .event-wrapper .time {
-    margin: auto 5px;
+  margin: auto 5px;
 }
 
 .calendar-day .event-wrapper .event-name {
-    font-weight: 500;
-    display: inline-block;
+  font-weight: 500;
+  display: inline-block;
 }
-  

@@ -18,8 +18,8 @@ const userSchema = new Schema({
     unique: true
   },
   password: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },
   hours: {
     type: Number,

@@ -11,6 +11,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const GET_EVENTS = 'GET_EVENTS';
 export const GETEVENTS_FAIL = 'GETEVENTS_FAIL';
+export const ADDING_EVENT = 'ADDING_EVENT';
 export const EVENT_ADDED = 'ADD_EVENT';
 export const ADDEVENT_FAIL = 'ADD_EVENT';
 export const USER_REGISTERED = 'USER_REGISTERED';
