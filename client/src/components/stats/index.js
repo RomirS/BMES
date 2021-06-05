@@ -1,52 +1,44 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Sidenav from 'components/helpers/Sidenav';
 import Loader from 'components/helpers/Loader';
 import PropTypes from 'prop-types';
-
 import './stats.css';
 import StatsTable from './StatsTable'
 
-
-class Stats extends Component {
-    state = {
-        loaded: false
-    }
-
-    static propTypes = {
+const Stats = (props) => {
+    
+    Stats.propTypes = {
         auth: PropTypes.object.isRequired,
         user: PropTypes.object.isRequired,
         error: PropTypes.object
-      }
-    
-    componentDidUpdate() {
-        if (!this.props.auth.isAuthenticated && !this.props.auth.isLoading) {
-            this.props.history.push('/login');
-        }
     }
-    
-    render() {
-        const user = this.props.user;
-            return (
-                <>
-                    {user ? (
-                    <div className="block">
-                        <Sidenav user={user}/>
-                        <div>
-                        <StatsTable user={user}/> 
-                        </div>
-                    </div>
-                    ) : <Loader/> }
-                </>
-            );
-        };
-    };
+
+    useEffect(() => {
+        // if (props.auth.isAuthenticated && props.auth.isLoading) {
+        //     props.history.push('/login');
+        // }
+      });
+
+    return (
+        <>
+            {props.user ? (
+            <div className="block">
+                <Sidenav user={props.user}/>
+                <div>
+                <StatsTable props={props}/> 
+                </div>
+            </div>
+            ) : <Loader/> }
+        </>
+    );
+};
 
  
-const mapStateToProps = (state) => ({
-    auth: state.auth,
-    user: state.user,
-    error: state.error
+const mapStateToProps = ({auth, user, error}) => ({
+    auth: auth,
+    user: user,
+    error: error
   });
   
 export default connect(mapStateToProps, null)(Stats);
