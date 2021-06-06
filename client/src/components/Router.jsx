@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Login from './Login';
 import Home from './Home';
 import Stats from './Stats';
+import AdminStats from './AdminStats';
+import Profile from './Profile';
 
 const Router = ({ auth }) => (
   <>
@@ -23,6 +25,8 @@ const Router = ({ auth }) => (
         <Route exact path='/stats'>
           {!auth.isAuthenticated ? <Redirect to="/login" /> : <Stats />}
         </Route>
+        <Route path='/ALLstats' component={AdminStats} />
+        <Route path='/profile' component={Profile} />
       </Switch>
     </BrowserRouter>
   )}

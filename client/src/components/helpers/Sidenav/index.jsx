@@ -10,7 +10,6 @@ const Sidenav = ({ user, logout }) => {
   const [instance, setInstance] = useState();
 
   useEffect(() => {
-    console.log(sidenavEl.current);
     setInstance(M.Sidenav.init(sidenavEl.current));
   }, []);
 
@@ -52,6 +51,12 @@ const Sidenav = ({ user, logout }) => {
       </li>
       <li className="route">
         <a href="/stats">Stats</a>
+      </li>
+      <li>
+        <a href={"/profile"}>Profile</a>
+      </li>
+      <li>
+        <a href={"/ALLstats"}>See ALL Stats</a>
       </li>
       <li className="logout_button" style={{borderTop: '2px solid #eeeeee'}}>
         <a className="waves-effect" href="#!" onClick={doLogout}>

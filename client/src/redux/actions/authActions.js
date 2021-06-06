@@ -8,7 +8,7 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL
-} from './types';
+} from '../types';
 import { returnErrors, clearErrors } from './errorActions';
 
 export const loadUser = () => (dispatch, getState) => {

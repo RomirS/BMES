@@ -1,7 +1,7 @@
 import {
   GET_ERRORS,
   CLEAR_ERRORS
-} from './types';
+} from '../types';
 
 export const returnErrors = (msg, status, id = null) => {
   return {

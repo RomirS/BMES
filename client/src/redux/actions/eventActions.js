@@ -2,16 +2,25 @@ import axios from 'axios';
 import {
   GET_EVENTS,
   GETEVENTS_FAIL,
+  ADDING_EVENT,
   EVENT_ADDED,
   ADDEVENT_FAIL,
-  USER_REGISTERED,
-  USER_REGISTER_FAIL,
-  ADDING_EVENT
-} from './types';
+  EVENT_REGISTERED,
+  EVENT_REGISTER_FAIL,
+  EVENT_UNREGISTERED,
+  EVENT_UNREGISTER_FAIL,
+  EVENT_SIGNIN,
+  EVENT_SIGNIN_FAIL,
+} from '../types';
 import { returnErrors } from './errorActions';
 
 export const getEvents = () => (dispatch) => {
   axios.get('/api/events').then(res => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const key = `${month}@${year}`;
+
     dispatch({
       type: GET_EVENTS,
       payload: res.data
@@ -34,12 +43,11 @@ export const addEvent = ({ eventName, description, startTime, endTime }) => disp
     dispatch({ type: EVENT_ADDED });
     getEvents()(dispatch);
   }).catch((err) => {
-    dispatch(returnErrors(err.response.data, err.response.status, 'ADDEVENT_FAIL'));
-    dispatch({ type: ADDEVENT_FAIL });
+    dispatch(returnErrors(err.response.data, err.response.status, ADDEVENT_FAIL));
   });
 };
 
-export const registerForEvent = (eventName, startTime, netid) => dispatch => {
+export const eventRegister = ({ eventName, startTime, netid }) => dispatch => {
   const config = {
     headers: {
       "Content-type": "application/json"
@@ -49,11 +57,46 @@ export const registerForEvent = (eventName, startTime, netid) => dispatch => {
   const body = JSON.stringify({ eventName, startTime, netid });
   axios.post('/api/events/register', body, config).then(res => {
     dispatch({ 
-      type: USER_REGISTERED,
-      payload: res.data.events
+      type: EVENT_REGISTERED,
+      payload: res.data.registered
     });
   }).catch((err) => {
-    dispatch(returnErrors(err.response.data, err.response.status, 'USER_REGISTER_FAIL'));
-    dispatch({ type: USER_REGISTER_FAIL });
+    dispatch(returnErrors(err.response.data, err.response.status, EVENT_REGISTER_FAIL));
+  });
+}
+
+export const eventUnregister = ({ eventName, startTime, netid }) => dispatch => {
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  };
+
+  const body = JSON.stringify({ eventName, startTime, netid });
+  axios.post('/api/events/unregister', body, config).then(res => {
+    dispatch({ 
+      type: EVENT_UNREGISTERED,
+      payload: res.data.registered
+    });
+  }).catch((err) => {
+    dispatch(returnErrors(err.response.data, err.response.status, EVENT_UNREGISTER_FAIL));
+  });
+}
+
+export const eventSignin = ({ eventName, startTime, netid }) => dispatch => {
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  };
+
+  const body = JSON.stringify({ eventName, startTime, netid });
+  axios.post('/api/events/signin', body, config).then(res => {
+    dispatch({ 
+      type: EVENT_SIGNIN,
+      payload: res.data.attended
+    });
+  }).catch((err) => {
+    dispatch(returnErrors(err.response.data, err.response.status, EVENT_SIGNIN_FAIL));
   });
 }

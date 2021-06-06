@@ -2,7 +2,7 @@ import {
   GET_EVENTS,
   ADDING_EVENT,
   EVENT_ADDED
-} from '../actions/types';
+} from '../types';
 
 const initialState = {
   addingEvent: false,

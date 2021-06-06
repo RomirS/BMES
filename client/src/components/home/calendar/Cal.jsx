@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 
-import { monthNames, formatMonthName } from 'util/dateFormatters';
 import Dropdown from './Dropdown';
 import Days from './Days';
-import AddEventModal from './modals/AddEventModal';
 import './calendar.css';
-import RegisterModal from './modals/RegisterModal';
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const nextFive = (year) => {
@@ -20,12 +19,13 @@ const nextFive = (year) => {
 
 const Calendar = ({ user, events }) => {
   const [date, setDate] = useState(dayjs());
-  const [selectedDate, setSelectedDate] = useState();
-  const [selectedEvent, setSelectedEvent] = useState();
+
+  const onDayClick = (d) => {
+    console.log(d);
+  }
 
   return (
     <>
-    <div className={`${selectedDate || selectedEvent ? "minimize-calendar" : ""}`}>
       <div className="tail-datetime-calendar">
         <div className="calendar-navi">
           <span className="button-prev">
@@ -41,7 +41,7 @@ const Calendar = ({ user, events }) => {
               >navigate_next</i>
             </span>
           <Dropdown
-            title={formatMonthName(date.month())}
+            title={monthNames[date.month()]}
             data={monthNames}
             dataTarget="monthDropdown"
             onClick={(_, index) => setDate(date.month(index))}
@@ -64,17 +64,13 @@ const Calendar = ({ user, events }) => {
             </thead>
             <Days
               date={date}
-              onDayClick={setSelectedDate}
+              onDayClick={onDayClick}
               events={events}
               user={user}
-              userChoosesEvent={setSelectedEvent}
             />
           </table>
         </div>
       </div>
-    </div>
-    {selectedDate && <AddEventModal date={selectedDate} closeModal={() => setSelectedDate(null)} />}
-    {selectedEvent && <RegisterModal event={selectedEvent} user={user} closeModal={() => setSelectedEvent(null)} />}
     </>
   )
 }

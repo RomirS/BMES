@@ -25,7 +25,11 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
-  events: {
+  registered: {
+    type: Array,
+    default: []
+  },
+  attended: {
     type: Array,
     default: []
   },

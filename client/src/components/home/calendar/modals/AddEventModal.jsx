@@ -5,7 +5,7 @@ import { addEvent } from 'redux/actions/eventActions';
 import './modal.scss'
 import { useEffect } from 'react';
 
-const AddEventModal = ({ date, setSelectedDate, events, addEvent }) => {
+const AddEventModal = ({ date, closeModal, events, addEvent }) => {
   const [formState, setFormState] = useState({
     month: date.month,
     year: date.year,
@@ -19,8 +19,8 @@ const AddEventModal = ({ date, setSelectedDate, events, addEvent }) => {
 
   useEffect(() => {
     if (events.addingEvent && !addingEvent) setAddingEvent(true);
-    else if (!events.addingEvent && addingEvent) setSelectedDate(null);
-  }, [events.addingEvent, addingEvent, setSelectedDate]);
+    else if (!events.addingEvent && addingEvent) closeModal();
+  }, [events.addingEvent, addingEvent, closeModal]);
 
   const handleChange = (e) => {
     setFormState({
@@ -31,10 +31,9 @@ const AddEventModal = ({ date, setSelectedDate, events, addEvent }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-
-    const evaluate = Object.values(formState).filter(value => !value);
-    if (evaluate.length === 0) {
-      const { eventName, month, day, year, start, end, description } = formState;
+    
+    const { eventName, month, day, year, start, end, description } = formState;
+    if (start && end) {
       const [startHours, startMinutes] = start.split(':');
       const [endHours, endMinutes] = end.split(':');
       const startTime = new Date(year, parseInt(month) - 1, day, startHours, startMinutes);
@@ -51,7 +50,7 @@ const AddEventModal = ({ date, setSelectedDate, events, addEvent }) => {
   return (
     <div className="modal-wrapper z-depth-1">
       <div className="add-event-modal">
-        <span className="clear" onClick={() => setSelectedDate(null)}>
+        <span className="clear" onClick={closeModal}>
           <i className="material-icons grey-text text-darken-0">clear</i>
         </span>
         <form onSubmit={submitForm}>
@@ -116,7 +115,7 @@ const AddEventModal = ({ date, setSelectedDate, events, addEvent }) => {
             />
           </div>
           <div className="line">
-            <button type="submit">Submit</button>
+            <button className="blue btn waves-effect waves-light" type="submit">Submit</button>
           </div>
         </form>
       </div>

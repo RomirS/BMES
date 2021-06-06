@@ -21,10 +21,7 @@ const eventFrame = new Schema({
     type: Date,
     required: true
   },
-  registrees: {
-    type: Array,
-    default: []
-  }
+  timestamps: true
 });
 
 const EventFrame = mongoose.model('EventFrame', eventFrame);

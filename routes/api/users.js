@@ -8,7 +8,7 @@ const auth = require('../../middleware/auth');
 const User = require('../../models/User');
 
 router.get('/', auth, (req, res) => {
-  User.findById(req.user.id).select('id first last netid hours events isAdmin').then(user => {
+  User.findById(req.user.id).select('id first last netid hours registered attended isAdmin').then(user => {
     res.json(user);
   });
 });
@@ -62,7 +62,8 @@ router.post('/', (req,res) => {
                   first: user.first,
                   last: user.last,
                   hours: user.hours,
-                  events: user.events
+                  registered: user.registered,
+                  attended: user.attended,
                 }
               });
             }

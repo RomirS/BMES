@@ -74,16 +74,16 @@
   box-sizing: border-box;
 
   h1 {
-    margin: 0;
+    font-size: 80px;
   }
 
-  p {
+  .time {
     margin: 20px 0;
     font-size: 20px;
   }
 
-  button {
-    float: right;
+  .description {
+    font-size: 20px;
   }
 
   .clear {
@@ -94,17 +94,30 @@
     cursor: pointer;
   }
 
-  .registered {
-    text-align: right;
+  .flex-container {
+    display: flex;
 
-    i {
-      font-size: 20px;
-      margin-left: 10px;
-      transform: translateY(3px);
+    .toggle-wrapper {
+      margin-top: 7px;
+      margin-right: 20px;
     }
+  
+    .text-wrapper {
+      p {
+        display: inline-block;
+        font-size: 20px;
+        margin: 0;
+      }
+    }
+  }
+
+  .active-event {
+    margin-top: 30px;
+    padding: 6px 12px;
+    border-radius: 5px;
 
     p {
-      display: inline-block;
+      font-size: large;
     }
   }
 }

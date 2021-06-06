@@ -6,16 +6,19 @@ import {
   LOGIN_FAIL,
   REGISTER_FAIL,
   LOGOUT_SUCCESS,
-  USER_REGISTERED
-} from '../actions/types';
+  EVENT_REGISTERED,
+  EVENT_UNREGISTERED,
+  EVENT_SIGNIN,
+} from '../types';
 
 const initialState = {
-  _id: null,
+  id: null,
   netid: null,
   first: null,
   last: null,
   hours: 0,
-  events: [],
+  registered: [],
+  attended: [],
   isAdmin: false
 };
 
@@ -38,18 +41,22 @@ export default function user(state=initialState, action) {
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        _id: null,
-        netid: null,
-        first: null,
-        last: null,
-        hours: 0,
-        events: [],
-        isAdmin: false
+        ...initialState,
       };
-    case USER_REGISTERED:
+    case EVENT_REGISTERED:
       return {
         ...state,
-        events: action.payload
+        registered: action.payload
+      }
+    case EVENT_UNREGISTERED:
+      return {
+        ...state,
+        registered: action.payload
+      }
+    case EVENT_SIGNIN:
+      return {
+        ...state,
+        attended: action.payload
       }
     default:
       return state;

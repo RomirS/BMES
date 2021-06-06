@@ -33,7 +33,8 @@ router.post('/', (req,res) => {
               first: user.first,
               last: user.last,
               hours: user.hours,
-              events: user.events,
+              registered: user.registered,
+              attended: user.attended,
               isAdmin: user.isAdmin
             }
           });
