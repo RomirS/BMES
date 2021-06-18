@@ -44,16 +44,21 @@
 .eventList{
   color:#FFA200;;
 }
-.fevents{
-  color: #214183;
-  transform: translateX(+120px);
-
-}
-.pevents{
+.miniTitle{
   color: #214183;
   transform: translateX(+120px);
 }
 .logoimage{
   transform: translateX(+124px);
   margin-top: 50px;
+}
+.panels{
+  transform: translateX(+120px);
+}
+.card{
+  transform: translateX(+115px);
+  width: 500px;
+  float:none; /* disable the float */
+  display: inline-block; /* make blocks inline-block */
+  text-align: initial; /* restore text-align to default */
 }
