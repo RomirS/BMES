@@ -15,6 +15,7 @@ class EventCard extends React.Component {
                 toDisplay.push(event.slice(0, sliceLoc-1));
             }
         }
+
         const eventList = toDisplay.map((title) =>
             <div className="card medium event-card" key={title}>
                 <div className="card-image">
